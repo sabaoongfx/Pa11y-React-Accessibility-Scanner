@@ -42,7 +42,10 @@ export default function App() {
         body: JSON.stringify({ url: results.url, standard: results.standard }),
       });
 
-      if (!res.ok) throw new Error('PDF generation failed');
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'PDF generation failed');
+      }
 
       // Extract filename from Content-Disposition header
       const disposition = res.headers.get('Content-Disposition');

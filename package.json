@@ -16,7 +16,7 @@
     "install:all": "npm install && cd server && npm install && cd ../client && npm install"
   },
   "dependencies": {
-    "@sparticuz/chromium": "^143.0.4",
+    "@sparticuz/chromium": "^127.0.0",
     "pa11y": "^8.0.0",
     "pdfkit": "^0.15.0"
   },
