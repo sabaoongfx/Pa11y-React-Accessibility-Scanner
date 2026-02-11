@@ -1,4 +1,4 @@
-# Pa11y React Checker
+# Pa11y React Accessibility Scanner
 
 A web accessibility checker powered by [pa11y](https://github.com/pa11y/pa11y). Scan any website for WCAG accessibility issues and download a styled PDF report.
 

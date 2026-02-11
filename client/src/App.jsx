@@ -36,7 +36,7 @@ export default function App() {
     setPdfLoading(true);
 
     try {
-      const res = await fetch('/api/scan/pdf', {
+      const res = await fetch('/api/scan-pdf', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url: results.url, standard: results.standard }),
