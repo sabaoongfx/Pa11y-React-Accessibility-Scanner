@@ -1,0 +1,20 @@
+{
+  "name": "pa11y-react-checker",
+  "version": "1.0.0",
+  "description": "Web accessibility checker powered by pa11y with React frontend and PDF report generation",
+  "author": "Sabaoon (https://sabaoon.dev)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sabaoongfx/pa11y-react-checker"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && node index.js",
+    "dev:client": "cd client && npm run dev",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
