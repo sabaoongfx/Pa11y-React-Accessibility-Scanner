@@ -21,6 +21,9 @@
     "pdfkit": "^0.15.0",
     "puppeteer-core": "^22.15.0"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "devDependencies": {
     "concurrently": "^9.1.0"
   }
