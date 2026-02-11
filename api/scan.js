@@ -1,5 +1,9 @@
 import pa11y from 'pa11y';
-import chromium from '@sparticuz/chromium';
+import chromium from '@sparticuz/chromium-min';
+import puppeteer from 'puppeteer-core';
+
+const CHROMIUM_PACK =
+  'https://github.com/Sparticuz/chromium/releases/download/v127.0.0/chromium-v127.0.0-pack.tar';
 
 const VALID_STANDARDS = ['WCAG2A', 'WCAG2AA', 'WCAG2AAA'];
 
@@ -16,17 +20,21 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: `Invalid standard. Must be one of: ${VALID_STANDARDS.join(', ')}` });
   }
 
+  let browser;
   try {
-    const executablePath = await chromium.executablePath();
+    const executablePath = await chromium.executablePath(CHROMIUM_PACK);
+
+    browser = await puppeteer.launch({
+      executablePath,
+      args: chromium.args,
+      headless: chromium.headless,
+      defaultViewport: chromium.defaultViewport,
+    });
 
     const raw = await pa11y(url, {
       standard,
       timeout: 50000,
-      chromeLaunchConfig: {
-        executablePath,
-        headless: chromium.headless,
-        args: [...chromium.args, '--no-sandbox', '--disable-setuid-sandbox']
-      }
+      browser,
     });
 
     const issues = raw.issues.map(i => ({
@@ -50,5 +58,7 @@ export default async function handler(req, res) {
   } catch (err) {
     console.error('[SCAN] Error:', err.message);
     res.status(500).json({ error: `Scan failed: ${err.message}` });
+  } finally {
+    if (browser) await browser.close();
   }
 }

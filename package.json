@@ -16,9 +16,10 @@
     "install:all": "npm install && cd server && npm install && cd ../client && npm install"
   },
   "dependencies": {
-    "@sparticuz/chromium": "^127.0.0",
+    "@sparticuz/chromium-min": "^127.0.0",
     "pa11y": "^8.0.0",
-    "pdfkit": "^0.15.0"
+    "pdfkit": "^0.15.0",
+    "puppeteer-core": "^22.15.0"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"
